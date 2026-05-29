@@ -16,10 +16,16 @@ def _resolve_env_path(name: str, default: str) -> Path:
 
 
 def data_dir() -> Path:
+    # Use /tmp in serverless environments (Vercel) where filesystem is read-only
+    if os.getenv("VERCEL", "").lower() == "1":
+        return Path("/tmp/data")
     return _resolve_env_path("DATA_DIR", "data")
 
 
 def log_dir() -> Path:
+    # Use /tmp in serverless environments (Vercel) where filesystem is read-only
+    if os.getenv("VERCEL", "").lower() == "1":
+        return Path("/tmp/logs")
     return _resolve_env_path("LOG_DIR", "logs")
 
 

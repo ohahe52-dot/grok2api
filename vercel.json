@@ -1,0 +1,28 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "app/main.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "app/main.py"
+    }
+  ],
+  "env": {
+    "PYTHON_VERSION": "3.11",
+    "DATA_DIR": "/tmp/data",
+    "LOG_DIR": "/tmp/logs",
+    "LOG_FILE_ENABLED": "false",
+    "ACCOUNT_SYNC_INTERVAL": "60",
+    "account.refresh.enabled": "false"
+  },
+  "functions": {
+    "app/main.py": {
+      "maxDuration": 60
+    }
+  }
+}
