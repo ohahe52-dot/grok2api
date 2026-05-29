@@ -7,8 +7,7 @@
         ja:{label:'日本語', html:'ja'},
         es:{label:'Español', html:'es'},
         de:{label:'Deutsch', html:'de'},
-        fr:{label:'Français', html:'fr'},
-        vi:{label:'Tiếng Việt', html:'vi'}
+        fr:{label:'Français', html:'fr'}
       },
       LANG_CODES=Object.keys(LANGS),
       lang='zh',

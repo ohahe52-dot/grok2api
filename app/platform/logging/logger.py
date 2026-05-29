@@ -133,10 +133,6 @@ def _add_file_sink(
 ) -> None:
     global _file_sink_id
 
-    # Check if file logging is explicitly disabled via environment variable
-    if not _get_env_bool("LOG_FILE_ENABLED", True):
-        return
-
     _dir = log_dir or get_log_dir()
     _dir.mkdir(parents=True, exist_ok=True)
     _file_sink_id = logger.add(

@@ -1,3 +1,1 @@
-```
-.vercel/
-```
+Nothing should be ignored in this case, as the only change is adding a source file (`app/statics/i18n/vi.json`) which is a legitimate project file that should be tracked.
