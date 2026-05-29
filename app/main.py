@@ -99,6 +99,9 @@ setup_logging(
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    # Detect Vercel serverless environment
+    is_vercel = os.getenv("VERCEL", "").lower() == "true" or os.getenv("VERCEL") == "1"
+    
     # 1. Load configuration.
     await _config.load()
     reload_logging(
@@ -107,9 +110,10 @@ async def lifespan(app: FastAPI):
         max_files=_config.get_int("logging.max_files", 7),
     )
     logger.info(
-        "application startup: service=grok2api python={} platform={}",
+        "application startup: service=grok2api python={} platform={} vercel={}",
         sys.version.split()[0],
         platform.system(),
+        is_vercel,
     )
 
     # 2. Initialise account repository and bootstrap runtime table.
@@ -145,7 +149,10 @@ async def lifespan(app: FastAPI):
     )
     # Reload config in case it was just seeded/migrated into the backend.
     await _config.load()
-    await reconcile_local_media_cache_async()
+    
+    # Skip media cache reconciliation on Vercel to speed up cold starts
+    if not is_vercel:
+        await reconcile_local_media_cache_async()
 
     directory = await get_account_directory(repo)
 
@@ -153,95 +160,106 @@ async def lifespan(app: FastAPI):
     app.state.repository = repo
     app.state.directory = directory
 
-    # 3. Account directory sync loop — all workers, lightweight incremental pull.
-    #    Keeps each worker's in-memory table eventually consistent with the repo.
-    #
-    #    Adaptive interval strategy:
-    #      - After detecting changes  → re-check in ACCOUNT_SYNC_ACTIVE_INTERVAL (default 3 s)
-    #        so rapid back-to-back writes (bulk import, refresh cycle) are picked up quickly.
-    #      - After N idle polls       → back off toward ACCOUNT_SYNC_INTERVAL (default 30 s).
-    #    scan_changes() is an indexed DB query that costs < 1 ms when nothing changed,
-    #    so polling aggressively after a change is essentially free.
-    _SYNC_IDLE_INTERVAL = int(os.getenv("ACCOUNT_SYNC_INTERVAL", "30"))
-    _SYNC_ACTIVE_INTERVAL = int(os.getenv("ACCOUNT_SYNC_ACTIVE_INTERVAL", "3"))
-    _SYNC_IDLE_AFTER = 5  # consecutive empty polls before returning to idle pace
+    # 3. Account directory sync loop — SKIP on Vercel serverless.
+    #    On Vercel, each request will sync on-demand via middleware.
+    sync_task = None
+    if not is_vercel:
+        #    Adaptive interval strategy:
+        #      - After detecting changes  → re-check in ACCOUNT_SYNC_ACTIVE_INTERVAL (default 3 s)
+        #        so rapid back-to-back writes (bulk import, refresh cycle) are picked up quickly.
+        #      - After N idle polls       → back off toward ACCOUNT_SYNC_INTERVAL (default 30 s).
+        #    scan_changes() is an indexed DB query that costs < 1 ms when nothing changed,
+        #    so polling aggressively after a change is essentially free.
+        _SYNC_IDLE_INTERVAL = int(os.getenv("ACCOUNT_SYNC_INTERVAL", "30"))
+        _SYNC_ACTIVE_INTERVAL = int(os.getenv("ACCOUNT_SYNC_ACTIVE_INTERVAL", "3"))
+        _SYNC_IDLE_AFTER = 5  # consecutive empty polls before returning to idle pace
 
-    async def _sync_loop() -> None:
-        idle_streak = 0
-        while True:
-            interval = (
-                _SYNC_ACTIVE_INTERVAL
-                if idle_streak < _SYNC_IDLE_AFTER
-                else _SYNC_IDLE_INTERVAL
-            )
-            await asyncio.sleep(interval)
-            try:
-                changed = await directory.sync_if_changed()
-                idle_streak = 0 if changed else min(idle_streak + 1, _SYNC_IDLE_AFTER)
-            except asyncio.CancelledError:
-                raise
-            except Exception as exc:
-                logger.debug("account directory sync error: error={}", exc)
-                idle_streak = _SYNC_IDLE_AFTER  # back off on errors
+        async def _sync_loop() -> None:
+            idle_streak = 0
+            while True:
+                interval = (
+                    _SYNC_ACTIVE_INTERVAL
+                    if idle_streak < _SYNC_IDLE_AFTER
+                    else _SYNC_IDLE_INTERVAL
+                )
+                await asyncio.sleep(interval)
+                try:
+                    changed = await directory.sync_if_changed()
+                    idle_streak = 0 if changed else min(idle_streak + 1, _SYNC_IDLE_AFTER)
+                except asyncio.CancelledError:
+                    raise
+                except Exception as exc:
+                    logger.debug("account directory sync error: error={}", exc)
+                    idle_streak = _SYNC_IDLE_AFTER  # back off on errors
 
-    sync_task = asyncio.create_task(_sync_loop(), name="account-dir-sync")
+        sync_task = asyncio.create_task(_sync_loop(), name="account-dir-sync")
+        logger.info("account directory sync loop started (persistent mode)")
+    else:
+        logger.info("account directory sync loop disabled (serverless mode)")
 
-    # 4. Account refresh scheduler — only the leader worker.
-    #    Uses an advisory file lock so exactly one process runs the heavy
-    #    upstream quota-fetch loop regardless of worker count.
-    #
-    #    ``account.refresh.enabled`` selects between two independent runtime
-    #    strategies:
-    #      - true  → "quota" selector + scheduler running (default).
-    #      - false → "random" selector + scheduler idle (no upstream probing).
+    # 4. Account refresh scheduler — DISABLE on Vercel serverless.
+    #    Serverless functions cannot run long-running schedulers.
+    #    Each request will handle refresh on-demand if needed.
     from app.control.account.refresh import AccountRefreshService
 
     refresh_enabled = _config.get_bool("account.refresh.enabled", False)
-
     refresh_svc = AccountRefreshService(repo)
     set_refresh_service(refresh_svc)
     app.state.refresh_service = refresh_svc
 
-    is_leader = _try_acquire_scheduler_lock()
-    scheduler = get_account_refresh_scheduler(refresh_svc)
-    set_refresh_scheduler(scheduler)
-    set_refresh_scheduler_leader(is_leader)
-    app.state.account_refresh_scheduler = scheduler
-    app.state.account_refresh_is_leader = is_leader
+    is_leader = False
+    scheduler = None
+    
+    if not is_vercel:
+        is_leader = _try_acquire_scheduler_lock()
+        scheduler = get_account_refresh_scheduler(refresh_svc)
+        set_refresh_scheduler(scheduler)
+        set_refresh_scheduler_leader(is_leader)
+        app.state.account_refresh_scheduler = scheduler
+        app.state.account_refresh_is_leader = is_leader
 
-    strategy_name = reconcile_refresh_runtime(refresh_enabled)
-    if is_leader and strategy_name == "quota":
-        logger.info(
-            "scheduler leader: pid={} strategy=quota active_sync_s={} idle_sync_s={}",
-            os.getpid(),
-            _SYNC_ACTIVE_INTERVAL,
-            _SYNC_IDLE_INTERVAL,
-        )
-    elif is_leader:
-        logger.info(
-            "scheduler leader: pid={} strategy=random (scheduler idle) "
-            "active_sync_s={} idle_sync_s={}",
-            os.getpid(),
-            _SYNC_ACTIVE_INTERVAL,
-            _SYNC_IDLE_INTERVAL,
-        )
+        strategy_name = reconcile_refresh_runtime(refresh_enabled)
+        if is_leader and strategy_name == "quota":
+            logger.info(
+                "scheduler leader: pid={} strategy=quota active_sync_s={} idle_sync_s={}",
+                os.getpid(),
+                _SYNC_ACTIVE_INTERVAL if not is_vercel else 0,
+                _SYNC_IDLE_INTERVAL if not is_vercel else 0,
+            )
+        elif is_leader:
+            logger.info(
+                "scheduler leader: pid={} strategy=random (scheduler idle) "
+                "active_sync_s={} idle_sync_s={}",
+                os.getpid(),
+                _SYNC_ACTIVE_INTERVAL if not is_vercel else 0,
+                _SYNC_IDLE_INTERVAL if not is_vercel else 0,
+            )
+        else:
+            logger.info(
+                "scheduler follower: pid={} strategy={} active_sync_s={} idle_sync_s={}",
+                os.getpid(),
+                strategy_name,
+                _SYNC_ACTIVE_INTERVAL if not is_vercel else 0,
+                _SYNC_IDLE_INTERVAL if not is_vercel else 0,
+            )
     else:
-        logger.info(
-            "scheduler follower: pid={} strategy={} active_sync_s={} idle_sync_s={}",
-            os.getpid(),
-            strategy_name,
-            _SYNC_ACTIVE_INTERVAL,
-            _SYNC_IDLE_INTERVAL,
-        )
+        logger.info("scheduler disabled (serverless mode)")
+        set_refresh_scheduler(None)
+        set_refresh_scheduler_leader(False)
 
-    # 5. Initialise proxy directory and start clearance refresh scheduler.
-    from app.control.proxy import get_proxy_directory
-    from app.control.proxy.scheduler import ProxyClearanceScheduler
+    # 5. Proxy directory and clearance scheduler — DISABLE on Vercel.
+    if not is_vercel:
+        from app.control.proxy import get_proxy_directory
+        from app.control.proxy.scheduler import ProxyClearanceScheduler
 
-    proxy_dir = await get_proxy_directory()
-    proxy_scheduler = ProxyClearanceScheduler(proxy_dir)
-    if is_leader:
-        proxy_scheduler.start()
+        proxy_dir = await get_proxy_directory()
+        proxy_scheduler = ProxyClearanceScheduler(proxy_dir)
+        if is_leader:
+            proxy_scheduler.start()
+        logger.info("proxy clearance scheduler started (persistent mode)")
+    else:
+        logger.info("proxy clearance scheduler disabled (serverless mode)")
+        proxy_scheduler = None
 
     logger.info("application startup completed")
     yield
@@ -250,15 +268,18 @@ async def lifespan(app: FastAPI):
     # Shutdown
     # -----------
     logger.info("application shutdown started")
-    sync_task.cancel()
-    try:
-        await sync_task
-    except asyncio.CancelledError:
-        pass
+    
+    if sync_task is not None:
+        sync_task.cancel()
+        try:
+            await sync_task
+        except asyncio.CancelledError:
+            pass
 
-    if is_leader:
+    if not is_vercel and is_leader:
         scheduler.stop()
-        proxy_scheduler.stop()
+        if proxy_scheduler:
+            proxy_scheduler.stop()
         _release_scheduler_lock()
 
     set_refresh_scheduler(None)

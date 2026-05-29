@@ -18,7 +18,8 @@
     "LOG_DIR": "/tmp/logs",
     "LOG_FILE_ENABLED": "false",
     "ACCOUNT_SYNC_INTERVAL": "60",
-    "account.refresh.enabled": "false"
+    "account.refresh.enabled": "false",
+    "VERCEL": "1"
   },
   "functions": {
     "app/main.py": {
