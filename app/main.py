@@ -88,7 +88,8 @@ def _release_scheduler_lock() -> None:
 setup_logging(
     level=os.getenv("LOG_LEVEL", "INFO"),
     file_logging=os.getenv("LOG_FILE_ENABLED", "true").strip().lower()
-    in {"1", "true", "yes", "on"},
+    in {"1", "true", "yes", "on"}
+    and not os.getenv("VERCEL"),  # Auto-disable on Vercel
 )
 
 
