@@ -8,6 +8,10 @@ _ROOT_DIR = Path(__file__).resolve().parents[2]
 
 
 def _resolve_env_path(name: str, default: str) -> Path:
+    # On Vercel, force all paths to /tmp to avoid Read-only file system errors
+    if os.getenv("VERCEL"):
+        return Path("/tmp/grok2api") / default
+
     raw = os.getenv(name, default).strip() or default
     path = Path(raw)
     if not path.is_absolute():
