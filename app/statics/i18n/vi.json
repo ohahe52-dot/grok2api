@@ -1,0 +1,703 @@
+{
+  "common": {
+    "invalidKey": "Khóa không hợp lệ",
+    "connectionFailed": "Kết nối thất bại"
+  },
+  "login": {
+    "adminPageTitle": "Grok2API - Quản trị",
+    "adminTitle": "Bảng điều khiển quản trị",
+    "adminSubtitle": "Nhập mật khẩu quản trị để tiếp tục",
+    "adminPlaceholder": "Mật khẩu quản trị",
+    "continue": "Tiếp tục",
+    "webuiPageTitle": "Grok2API - WebUI",
+    "webuiTitle": "WebUI",
+    "webuiSubtitle": "Nhập khóa truy cập",
+    "webuiPlaceholder": "Khóa truy cập",
+    "enter": "Nhập",
+    "goToAdmin": "Đi đến bảng quản trị"
+  },
+  "header": {
+    "account": "Quản lý tài khoản",
+    "config": "Quản lý cấu hình",
+    "cache": "Quản lý bộ nhớ đệm",
+    "languageLabel": "Ngôn ngữ",
+    "logout": "Đăng xuất",
+    "versionDialogTitle": "Phiên bản",
+    "versionCurrent": "Hiện tại",
+    "versionLatest": "Mới nhất",
+    "versionPublishedAt": "Xuất bản",
+    "versionUpToDate": "Bạn đang sử dụng phiên bản mới nhất.",
+    "versionUpdateAvailable": "Có phiên bản mới sẵn sàng.",
+    "versionChecking": "Đang kiểm tra cập nhật...",
+    "versionRefresh": "Kiểm tra ngay",
+    "versionUnavailable": "Không thể kiểm tra cập nhật.",
+    "versionNotesEmpty": "Không có ghi chú phát hành.",
+    "versionOpenRelease": "Mở phát hành",
+    "versionClose": "Đóng"
+  },
+  "webui": {
+    "header": {
+      "chat": "Trò chuyện",
+      "masonry": "Masonry",
+      "chatkit": "ChatKit"
+    },
+    "chat": {
+      "pageTitle": "Grok2API - WebChat",
+      "sidebarTitle": "Cuộc trò chuyện",
+      "newChat": "Trò chuyện mới",
+      "toggleSidebar": "Chuyển đổi thanh bên",
+      "upload": "Tải lên tệp",
+      "noSessions": "Chưa có cuộc trò chuyện nào",
+      "untitled": "Trò chuyện mới",
+      "rename": "Đổi tên",
+      "delete": "Xóa",
+      "edit": "Sửa",
+      "copy": "Sao chép",
+      "regenerate": "Tạo lại",
+      "like": "Thích",
+      "dislike": "Không thích",
+      "reasoning": "Suy nghĩ",
+      "save": "Lưu",
+      "cancel": "Hủy",
+      "confirm": "Xác nhận",
+      "copySuccess": "Đã sao chép",
+      "renamePrompt": "Đổi tên phiên",
+      "deleteConfirm": "Xóa phiên này?",
+      "modelLabel": "Mô hình",
+      "emptyTitle": "Grok Chat",
+      "empty": "Bắt đầu cuộc trò chuyện mới bằng cách gửi tin nhắn.",
+      "promptPlaceholder": "Nhập tin nhắn của bạn. Nhấn Enter để gửi và Shift+Enter để xuống dòng.",
+      "editPlaceholder": "Sửa tin nhắn này",
+      "stop": "Dừng",
+      "send": "Gửi",
+      "statusReady": "Sẵn sàng",
+      "statusConnecting": "Đang kết nối...",
+      "statusThinking": "Đang suy nghĩ...",
+      "statusGenerating": "Đang tạo...",
+      "statusDone": "Hoàn thành",
+      "statusStopped": "Đã dừng",
+      "statusFailed": "Thất bại",
+      "statusInitFailed": "Khởi tạo thất bại",
+      "errors": {
+        "enterPrompt": "Vui lòng nhập tin nhắn",
+        "imageRequired": "Chỉnh sửa ảnh yêu cầu ít nhất một ảnh tham chiếu",
+        "imageOnly": "Chỉnh sửa ảnh chỉ hỗ trợ tải lên hình ảnh",
+        "videoImageOnly": "Tạo video chỉ hỗ trợ tải lên ảnh tham chiếu",
+        "imageProxyRequired": "Không thể tải ảnh. Đặt URL cơ sở APP và thay đổi định dạng đầu ra ảnh thành local_url, local_md hoặc base64.",
+        "videoProxyRequired": "Tải video trả về 403. Vào trang quản trị, đặt URL cơ sở APP, sau đó thay đổi định dạng đầu ra video thành chế độ proxy cục bộ (local_url hoặc local_html) và thử lại.",
+        "requestFailed": "Yêu cầu thất bại",
+        "initFailed": "Khởi tạo trang trò chuyện thất bại"
+      }
+    },
+    "chatkit": {
+      "pageTitle": "Grok2API - ChatKit",
+      "voiceLabel": "Giọng nói",
+      "personalityLabel": "Tính cách",
+      "instructionLabel": "Lời nhắc",
+      "speedLabel": "Tốc độ",
+      "start": "Bắt đầu",
+      "pause": "Tạm dừng",
+      "mute": "Tắt âm",
+      "unmute": "Bật âm",
+      "newSession": "Phiên mới",
+      "statusIdle": "Chưa kết nối",
+      "statusConnecting": "Đang kết nối",
+      "statusLive": "Trực tiếp",
+      "statusMuted": "Đã tắt âm",
+      "statusPaused": "Đã tạm dừng",
+      "statusError": "Thất bại",
+      "idleText": "Nhấp và ủy quyền để kết nối với Grok Voice thông qua các phiên giọng nói ChatKit.",
+      "connectingText": "Đang yêu cầu phiên Grok Voice và kết nối với LiveKit...",
+      "liveText": "Kết nối đã được thiết lập. Bạn giờ có thể nói chuyện trực tiếp với Grok.",
+      "outputMutedText": "Đầu ra loa đã tắt âm, nhưng bạn vẫn có thể tiếp tục nói.",
+      "pausedText": "Phiên đã tạm dừng. Nhấp bắt đầu để tiếp tục phiên giọng nói hiện tại.",
+      "errorText": "Kết nối không hoàn tất. Kiểm tra quyền truy cập micrô và thử lại.",
+      "endedText": "Phiên giọng nói đã kết thúc. Bạn có thể bắt đầu lại bất cứ lúc nào.",
+      "livekitLoadFailed": "LiveKit SDK không thể tải",
+      "invalidToken": "Phản hồi token giọng nói không hợp lệ"
+    },
+    "masonry": {
+      "pageTitle": "Grok2API - Masonry",
+      "title": "Masonry",
+      "qualitySpeed": "Tốc độ",
+      "qualityQuality": "Chất lượng",
+      "modeRounds": "Vòng",
+      "modeCycles": "Chu kỳ",
+      "promptPlaceholder": "Mô tả hình ảnh bạn muốn. Nhấn Enter để tạo và Shift+Enter để xuống dòng.",
+      "generate": "Tạo",
+      "stop": "Dừng",
+      "openImage": "Mở hình ảnh",
+      "statusReady": "Sẵn sàng",
+      "statusConnecting": "Đang kết nối...",
+      "statusGenerating": "Đang tạo",
+      "statusCompleted": "Hoàn thành",
+      "statusStopped": "Đã dừng",
+      "statusFailed": "Thất bại",
+      "statusSuccess": "Thành công",
+      "statusPartialFailure": "Thất bại một phần",
+      "statusBatchFailed": "Thất bại",
+      "emptyTitle": "Bắt đầu với một lời nhắc",
+      "emptyText": "Nhập một lời nhắc và hình ảnh sẽ xuất hiện ở đây theo thứ tự.",
+      "roundLabel": "Vòng {n}",
+      "batchFiltered": "Đã lọc",
+      "errors": {
+        "enterPrompt": "Vui lòng nhập lời nhắc",
+        "requestFailed": "Yêu cầu thất bại",
+        "initFailed": "Khởi tạo trang Masonry thất bại"
+      }
+    }
+  },
+  "account": {
+    "pageTitle": "Grok2API - Tài khoản",
+    "pageHeading": "Quản lý tài khoản",
+    "pageSubtitle": "Quản lý nhóm tài khoản xAI, trạng thái hạn ngạch và trạng thái runtime được sử dụng bởi Grok2API.",
+    "actionImport": "Nhập tài khoản",
+    "actionAdd": "Thêm tài khoản",
+    "actionImportShort": "Nhập",
+    "actionAddShort": "Thêm",
+    "sectionOverview": "Tổng quan",
+    "sectionTable": "Danh sách tài khoản",
+    "statTotal": "Tổng tài khoản",
+    "statActive": "Hoạt động",
+    "statCooling": "Bị giới hạn tốc độ",
+    "statInvalid": "Bất thường",
+    "statDisabled": "Đã vô hiệu hóa",
+    "statCalls": "Tổng lượt gọi",
+    "statSuccessTotal": "Lượt gọi thành công",
+    "statAuto": "Cân bằng tự động",
+    "statFast": "Cân bằng nhanh",
+    "statExpert": "Cân bằng chuyên gia",
+    "statHeavy": "Cân bằng nặng",
+    "filterStatusLabel": "Trạng thái",
+    "filterNsfwLabel": "NSFW",
+    "filterTypeLabel": "Loại",
+    "filterStatusAll": "Tất cả",
+    "filterStatusActive": "Hoạt động",
+    "filterStatusCooling": "Bị giới hạn tốc độ",
+    "filterStatusInvalid": "Bất thường",
+    "filterStatusDisabled": "Đã vô hiệu hóa",
+    "filterNsfwAll": "Tất cả",
+    "filterNsfwEnabled": "Bật",
+    "filterNsfwDisabled": "Tắt",
+    "filterTypeAll": "Tất cả",
+    "filter": "Lọc",
+    "export": "Xuất dữ liệu",
+    "batchNsfw": "Bật NSFW",
+    "batchNsfwDisable": "Tắt NSFW",
+    "batchRefresh": "Làm mới đã chọn",
+    "batchDisable": "Vô hiệu hóa đã chọn",
+    "batchRestore": "Khôi phục đã chọn",
+    "batchDelete": "Xóa đã chọn",
+    "colToken": "Token",
+    "colType": "Loại tài khoản",
+    "colStatus": "Trạng thái runtime",
+    "colQuota": "Hạn ngạch",
+    "colSuccess": "Thành công",
+    "colFail": "Thất bại",
+    "colRate": "Tỷ lệ thành công",
+    "colLastUsed": "Lần sử dụng cuối",
+    "colActions": "Hành động",
+    "actionCopy": "Sao chép",
+    "actionRefresh": "Làm mới hạn ngạch",
+    "actionDisable": "Vô hiệu hóa tài khoản",
+    "actionRestore": "Khôi phục tài khoản",
+    "actionEdit": "Sửa",
+    "actionDelete": "Xóa",
+    "empty": "Không có tài khoản nào. Sử dụng Nhập tài khoản hoặc Thêm tài khoản để tiếp tục.",
+    "pageInfo": "{n} tổng cộng",
+    "pageIndicator": "Trang {current} / {total}",
+    "pageSizeOption": "{n} / trang",
+    "addTitle": "Thêm tài khoản",
+    "addHint": "Nhập một token mỗi dòng. Các token hiện có sẽ được tự động bỏ qua.",
+    "addPlaceholder": "Dán token, mỗi dòng một...",
+    "importTitle": "Nhập tài khoản",
+    "importHintDefault": "Hỗ trợ định dạng .txt (một token mỗi dòng) và .json ({pool:[tokens]}).",
+    "importHintJson": "Payload JSON đã bao gồm metadata loại tài khoản. Không cần lựa chọn bổ sung.",
+    "importHintTxt": "Nhập một token mỗi dòng. Các token đã nhập sẽ được thêm vào loại tài khoản đã chọn.",
+    "labelType": "Loại",
+    "labelFile": "Tệp",
+    "editTitle": "Sửa tài khoản",
+    "editTokenPlaceholder": "Nhập token đã cập nhật",
+    "exportTitle": "Xuất tài khoản",
+    "exportCountPrefix": "",
+    "exportCountSuffix": " token",
+    "exportJson": "Định dạng JSON (độ trung thực đầy đủ)",
+    "exportTxt": "Định dạng TXT (chỉ token)",
+    "confirmTitle": "Xác nhận hành động",
+    "cancel": "Hủy",
+    "confirm": "Xác nhận",
+    "save": "Lưu thay đổi",
+    "noFile": "Chưa chọn tệp nào",
+    "copied": "Đã sao chép",
+    "copyFailed": "Sao chép thất bại",
+    "loadFailed": "Tải thất bại",
+    "notFound": "Không tìm thấy tài khoản",
+    "enterToken": "Nhập một token",
+    "selectFile": "Chọn một tệp",
+    "readFileFailed": "Đọc tệp thất bại",
+    "jsonInvalid": "Định dạng JSON không hợp lệ",
+    "jsonShapeInvalid": "Cấu trúc JSON không hợp lệ. Mong đợi {pool:[tokens]}.",
+    "jsonEmpty": "Không có token nào có thể nhập trong tệp JSON",
+    "fileEmpty": "Không có token nào có thể nhập trong tệp",
+    "adding": "Đang thêm {n} tài khoản…",
+    "addDone": "Đã thêm tài khoản",
+    "addFailed": "Thêm tài khoản thất bại",
+    "importing": "Đang nhập {n} tài khoản…",
+    "importDone": "Nhập hoàn tất",
+    "importJsonDone": "Nhập hoàn tất: {n} tài khoản đã xử lý",
+    "importFailed": "Nhập thất bại",
+    "saving": "Đang lưu thay đổi…",
+    "editDone": "Đã lưu thay đổi",
+    "editFailed": "Lưu thay đổi thất bại",
+    "saveResult": "{prefix}: {count} tài khoản đã thêm",
+    "saveResultSkipped": "{prefix}: {count} đã thêm, {skipped} đã tồn tại",
+    "exportEmpty": "Không có tài khoản nào để xuất",
+    "deleteConfirmTitle": "Xác nhận xóa",
+    "deleteConfirmOne": "Xóa {token}?<br><small style=\"color:var(--error)\">Hành động này không thể hoàn tác.</small>",
+    "deleteConfirmMany": "Xóa <b>{n}</b> tài khoản?<br><small style=\"color:var(--error)\">Hành động này không thể hoàn tác.</small>",
+    "deleting": "Đang xóa {n} tài khoản…",
+    "deleteDone": "Đã xóa {n}",
+    "deleteFailed": "Xóa thất bại",
+    "refreshing": "Đang làm mới dữ liệu hạn ngạch cho {n} tài khoản…",
+    "refreshDone": "Làm mới hoàn tất: {ok} thành công, {fail} thất bại",
+    "refreshFailed": "Làm mới thất bại",
+    "disableConfirmTitle": "Vô hiệu hóa tài khoản",
+    "disableConfirmBody": "Vô hiệu hóa {token}?<br><small style=\"color:var(--fg-muted)\">Tài khoản sẽ bị loại khỏi phân bổ yêu cầu cho đến khi được khôi phục.</small>",
+    "disablingOne": "Đang vô hiệu hóa tài khoản…",
+    "disableDone": "Đã vô hiệu hóa tài khoản",
+    "restoreConfirmTitle": "Khôi phục tài khoản",
+    "restoreConfirmBody": "Khôi phục {token}?<br><small style=\"color:var(--fg-muted)\">Tài khoản sẽ được trả lại phân bổ yêu cầu.</small>",
+    "restoringOne": "Đang khôi phục tài khoản…",
+    "restoreDone": "Đã khôi phục tài khoản",
+    "batchDisableConfirmTitle": "Vô hiệu hóa tài khoản",
+    "batchDisableConfirmBody": "Vô hiệu hóa <b>{n}</b> tài khoản đã chọn?<br><small style=\"color:var(--fg-muted)\">Tài khoản đã vô hiệu hóa bị loại khỏi phân bổ yêu cầu và có thể được khôi phục sau.</small>",
+    "disablingMany": "Đang vô hiệu hóa {n} tài khoản…",
+    "disableManyDone": "Vô hiệu hóa hoàn tất: {ok} thành công, {fail} thất bại",
+    "batchRestoreConfirmTitle": "Khôi phục tài khoản",
+    "batchRestoreConfirmBody": "Khôi phục <b>{n}</b> tài khoản đã chọn?<br><small style=\"color:var(--fg-muted)\">Tài khoản đã khôi phục sẽ được trả lại phân bổ yêu cầu.</small>",
+    "restoringMany": "Đang khôi phục {n} tài khoản…",
+    "restoreManyDone": "Khôi phục hoàn tất: {ok} thành công, {fail} thất bại",
+    "nsfwConfirmTitle": "Bật NSFW",
+    "nsfwConfirmBody": "Bật NSFW cho <b>{n}</b> tài khoản đã chọn?",
+    "nsfwEnablingOne": "Đang bật NSFW…",
+    "nsfwEnabling": "Đang bật NSFW cho {n} tài khoản…",
+    "nsfwDone": "Cập nhật NSFW hoàn tất: {ok} thành công, {fail} thất bại",
+    "nsfwDisablingOne": "Đang tắt NSFW…",
+    "nsfwDisableDone": "Tắt NSFW hoàn tất: {ok} thành công, {fail} thất bại",
+    "operationFailed": "Thao tác thất bại",
+    "unknown": "Không rõ",
+    "na": "—",
+    "pool": {
+      "autoRecommended": "Tự động phát hiện (Đề xuất)",
+      "basic": "Cơ bản",
+      "super": "Siêu",
+      "heavy": "Nặng"
+    },
+    "mode": {
+      "auto": "Tự động",
+      "fast": "Nhanh",
+      "expert": "Chuyên gia",
+      "heavy": "Nặng",
+      "grok_4_3": "Grok 4.3 Beta"
+    },
+    "status": {
+      "active": "Hoạt động",
+      "cooling": "Bị giới hạn tốc độ",
+      "disabled": "Đã vô hiệu hóa",
+      "expired": "Đã hết hạn",
+      "invalid": "Bất thường"
+    }
+  },
+  "config": {
+    "pageTitle": "Grok2API - Quản lý cấu hình",
+    "pageHeading": "Quản lý cấu hình",
+    "pageSubtitle": "Quản lý các tham số runtime của Grok2API và hành vi dịch vụ mặc định.",
+    "resetShort": "Đặt lại",
+    "saveShort": "Lưu",
+    "resetChanges": "Đặt lại thay đổi",
+    "saveChanges": "Lưu thay đổi",
+    "unsavedDefault": "Phát hiện thay đổi chưa lưu",
+    "unsavedSingle": "1 thay đổi chưa lưu được phát hiện",
+    "unsavedMultiple": "{n} thay đổi chưa lưu được phát hiện",
+    "discardShort": "Hoàn tác",
+    "saveBarShort": "Lưu",
+    "discardChanges": "Hủy thay đổi",
+    "randomize": "Tạo giá trị",
+    "loadFailed": "Không thể tải cấu hình: {message}",
+    "saving": "Đang lưu thay đổi...",
+    "saveSuccess": "Đã lưu thay đổi",
+    "saveFailed": "Không thể lưu thay đổi: {message}",
+    "resetSuccess": "Đã hủy thay đổi chưa lưu",
+    "disabledTip": {
+      "appUrlRequired": "Cấu hình URL cơ sở APP trước"
+    },
+    "schema": {
+      "tabs": {
+        "system": "Hệ thống",
+        "features": "Tính năng",
+        "schedule": "Lập lịch",
+        "proxy": "Mạng",
+        "cache": "Lưu trữ bộ nhớ đệm",
+        "image": "Quy trình hình ảnh"
+      },
+      "groups": {
+        "baseAccess": "Kiểm soát truy cập",
+        "features": "Tính năng cốt lõi",
+        "mediaFormat": "Đầu ra phương tiện",
+        "refreshSchedule": "Làm mới hạn ngạch",
+        "selection": "Đồng thời lựa chọn",
+        "batchConcurrency": "Đồng thời hàng loạt",
+        "egressProxy": "Proxy đầu ra",
+        "clearance": "Xóa Cloudflare",
+        "retry": "Chính sách thử lại",
+        "timeouts": "Thời gian chờ yêu cầu",
+        "imageProtocol": "NSFW và truyền phát hình ảnh",
+        "logging": "Ghi nhật ký",
+        "localMediaCache": "Bộ nhớ đệm phương tiện cục bộ"
+      },
+      "options": {
+        "imageFormat": {
+          "grokUrl": "URL (Grok gốc)",
+          "localUrl": "URL (Proxy cục bộ)",
+          "grokMarkdown": "Markdown (Grok gốc)",
+          "localMarkdown": "Markdown (Proxy cục bộ)",
+          "base64": "Base64 (Nội tuyến)"
+        },
+        "videoFormat": {
+          "grokUrl": "URL (Grok gốc)",
+          "localUrl": "URL (Proxy cục bộ)",
+          "grokHtml": "HTML (Grok gốc)",
+          "localHtml": "HTML (Proxy cục bộ)"
+        },
+        "proxyMode": {
+          "direct": "Trực tiếp",
+          "singleProxy": "Proxy cố định",
+          "proxyPool": "Nhóm proxy"
+        },
+        "clearanceMode": {
+          "none": "Đã vô hiệu hóa",
+          "manual": "Thủ công",
+          "flaresolverr": "FlareSolverr"
+        }
+      },
+      "fields": {
+        "appUrl": {
+          "label": "URL cơ sở APP",
+          "desc": "URL gốc được ứng dụng phơi bày, ví dụ https://your-domain.com. Bắt buộc khi kích hoạt phân phối proxy cục bộ."
+        },
+        "appKey": {
+          "label": "Mật khẩu truy cập APP",
+          "desc": "Mật khẩu xác thực cho bề mặt quản trị. Các phiên hiện có sẽ bị vô hiệu hóa ngay lập tức sau khi thay đổi."
+        },
+        "apiKey": {
+          "label": "Khóa truy cập API",
+          "desc": "Khóa xác thực cho API tương thích OpenAI. Phân tách nhiều giá trị bằng dấu phẩy. Để trống để vô hiệu hóa xác thực."
+        },
+        "webuiEnabled": {
+          "label": "Bật WebUI",
+          "desc": "Phơi bày điểm vào WebUI. Khi vô hiệu hóa, các route liên quan trả về 404."
+        },
+        "webuiKey": {
+          "label": "Mật khẩu truy cập WebUI",
+          "desc": "Mật khẩu xác thực bắt buộc để truy cập WebUI khi được bật."
+        },
+        "temporary": {
+          "label": "Phiên tạm thời",
+          "desc": "Yêu cầu bị loại khỏi lịch sử trò chuyện Grok, cung cấp chế độ chat thoáng qua."
+        },
+        "memory": {
+          "label": "Bộ nhớ trò chuyện",
+          "desc": "Bật Bộ nhớ Grok để mô hình có thể giữ lại sở thích và ngữ cảnh người dùng trên các phiên."
+        },
+        "stream": {
+          "label": "Truyền phát mặc định",
+          "desc": "Giá trị mặc định được áp dụng khi yêu cầu không cung cấp rõ ràng tham số stream."
+        },
+        "thinking": {
+          "label": "Đầu ra suy luận mặc định",
+          "desc": "Giá trị mặc định được áp dụng khi yêu cầu không cung cấp rõ ràng tham số thinking. Khi bật, các bước suy luận được trả về trong reasoning_content."
+        },
+        "autoChatModeFallback": {
+          "label": "Dự phòng chế độ chat AUTO",
+          "desc": "Khi mô hình chat AUTO không có hạn ngạch auto khả dụng, tự động thử các cửa hạn ngạch chat fast và expert."
+        },
+        "thinkingSummary": {
+          "label": "Suy luận cô đọng",
+          "desc": "Khi bật, các bước suy luận được cô đọng thành tóm tắt có cấu trúc. Khi tắt, luồng suy luận thô đầy đủ được xuất ra, với chi tiết cộng tác multi-agent và dấu vết gọi công cụ."
+        },
+        "dynamicStatsig": {
+          "label": "Statsig động",
+          "desc": "Tạo dấu vân tay thiết bị Statsig mới cho mỗi yêu cầu để giảm khả suất thách thức kiểm soát rủi ro."
+        },
+        "enableNsfw": {
+          "label": "Cho phép tạo NSFW",
+          "desc": "Cho phép điểm cuối tạo hình ảnh bỏ qua lọc nội dung NSFW."
+        },
+        "showSearchSources": {
+          "label": "附加 nguồn vào nội dung",
+          "desc": "Nguồn tìm kiếm luôn được xuất trong trường search_sources. Tùy chọn này điều khiển việc có附加 phần ## Sources vào nội dung phản hồi hay không (để tương thích ngược với client phân tích văn bản)."
+        },
+        "customInstruction": {
+          "label": "Hướng dẫn bổ sung toàn cục",
+          "desc": "Tiêm thông điệp hệ thống nhất quán vào mọi yêu cầu để thực thi hành vi mô hình hoặc thiết lập vai trò cố định."
+        },
+        "imageFormat": {
+          "label": "Định dạng đầu ra hình ảnh",
+          "desc": "grok_url và grok_md trả về địa chỉ CDN Grok gốc mặc định. Chế độ local_* tải tài sản về máy chủ trước và phơi bày lại qua proxy cục bộ. base64 trả về Data URI nội tuyến. Khi bật Proxy hình ảnh công cộng Imagine, hình ảnh imagine-public trả về qua WebSocket cũng được proxy cục bộ."
+        },
+        "imaginePublicImageProxy": {
+          "label": "Proxy hình ảnh công cộng Imagine",
+          "desc": "Khi bật, hình ảnh imagine-public trả về qua WebSocket được tải về máy chủ và phân phối qua proxy cục bộ. Khi tắt, hình ảnh công cộng được trả về trực tiếp."
+        },
+        "videoFormat": {
+          "label": "Định dạng đầu ra video",
+          "desc": "Chế độ local_* tải tài sản video về máy chủ và phân phối qua proxy cục bộ. Cấu hình URL cơ sở APP trước và tính toán việc sử dụng băng thông đầu ra."
+        },
+        "refreshEnabled": {
+          "label": "Bật làm mới hạn ngạch",
+          "desc": "Khi bật, hệ thống tự động chuyển sang chế độ làm mới hạn ngạch. Khi tắt, tự động chuyển sang chế độ thử lại tự động.",
+          "help": "Bật: chế độ làm mới hạn ngạch. Bộ lập lịch đồng bộ hạn ngạch thực định kỳ, và lựa chọn sử dụng chấm điểm.\nTắt: chế độ thử lại tự động. Không thăm dò upstream, lựa chọn ngẫu nhiên đều, và tự động hoán đổi khi lỗi tối đa 5 lần thử lại.\nĐề xuất: tắt điều này cho >10k tài khoản để tránh tự kích hoạt 429s upstream."
+        },
+        "maxInflight": {
+          "label": "Tối đa đang bay mỗi tài khoản",
+          "desc": "Yêu cầu đồng thời đang bay tối đa mỗi tài khoản. Tài khoản ở giới hạn này bị bộ lựa chọn bỏ qua (dùng chung bởi cả hai chế độ)."
+        },
+        "basicInterval": {
+          "label": "Chu kỳ cơ bản (s)",
+          "desc": "Chu kỳ chia sẻ cho nhóm cơ bản: dùng cho làm mới nền trong chế độ hạn ngạch và cho cooldown 429 trong chế độ ngẫu nhiên. Mặc định 86400s."
+        },
+        "superInterval": {
+          "label": "Chu kỳ siêu (s)",
+          "desc": "Chu kỳ chia sẻ cho nhóm siêu: dùng cho làm mới nền trong chế độ hạn ngạch và cho cooldown 429 trong chế độ ngẫu nhiên. Mặc định 7200s."
+        },
+        "heavyInterval": {
+          "label": "Chu kỳ nặng (s)",
+          "desc": "Chu kỳ chia sẻ cho nhóm nặng: dùng cho làm mới nền trong chế độ hạn ngạch và cho cooldown 429 trong chế độ ngẫu nhiên. Mặc định 7200s."
+        },
+        "usageConcurrency": {
+          "label": "Đồng thời làm mới",
+          "desc": "Số lượt gọi usage song song tối đa được phép trong quá trình làm mới hạn ngạch."
+        },
+        "onDemandMinInterval": {
+          "label": "Khoảng thời gian làm mới theo yêu cầu (s)",
+          "desc": "Cửa sổ điều tiết cho làm mới kích hoạt bởi yêu cầu như xử lý 429. Các kích hoạt lặp lại trong khoảng được gộp thành một làm mới duy nhất."
+        },
+        "imageCacheMaxMb": {
+          "label": "Giới hạn bộ nhớ đệm hình ảnh (MB)",
+          "desc": "0 vô hiệu hóa giới hạn. Chỉ áp dụng cho tệp phương tiện proxy cục bộ. Khi vượt giới hạn, các tệp cũ nhất bị xóa cho đến khi sử dụng giảm xuống 60% giới hạn."
+        },
+        "videoCacheMaxMb": {
+          "label": "Giới hạn bộ nhớ đệm video (MB)",
+          "desc": "0 vô hiệu hóa giới hạn. Chỉ áp dụng cho tệp phương tiện proxy cục bộ. Khi vượt giới hạn, các tệp cũ nhất bị xóa cho đến khi sử dụng giảm xuống 60% giới hạn."
+        },
+        "nsfwConcurrency": {
+          "label": "Đồng thời bật NSFW",
+          "desc": "Đồng thời cấp token cho việc bật NSFW hàng loạt. Mỗi token yêu cầu ba cuộc gọi mạng."
+        },
+        "refreshConcurrency": {
+          "label": "Đồng thời làm mới usage",
+          "desc": "Đồng thời cấp token được dùng trong quá trình làm mới hạn ngạch hàng loạt."
+        },
+        "assetUploadConcurrency": {
+          "label": "Đồng thời tải lên tài sản",
+          "desc": "Đồng thời toàn cục tối đa cho việc tải lên tài sản kích hoạt bởi tệp đính kèm trên tất cả yêu cầu đến."
+        },
+        "assetListConcurrency": {
+          "label": "Đồng thời liệt kê tài sản",
+          "desc": "Đồng thời toàn cục tối đa cho điểm cuối list_assets trên tất cả yêu cầu."
+        },
+        "assetDeleteConcurrency": {
+          "label": "Đồng thời xóa tài sản",
+          "desc": "Đồng thời toàn cục tối đa cho điểm cuối delete_asset. Cũng được dùng làm đồng thời cấp token mặc định cho dọn dẹp hàng loạt trong UI quản trị."
+        },
+        "proxyMode": {
+          "label": "Chế độ proxy",
+          "desc": "Điều khiển định tuyến proxy đầu ra. direct gửi traffic không qua proxy, single_proxy dùng proxy cố định, và proxy_pool xoay vòng qua nhóm."
+        },
+        "proxyUrl": {
+          "label": "URL proxy chính",
+          "desc": "Điểm cuối proxy đầu ra cho traffic API. Hỗ trợ http, https, và socks5."
+        },
+        "resourceProxyUrl": {
+          "label": "URL proxy tài nguyên",
+          "desc": "Điểm cuối proxy chuyên dụng cho tải xuống hình ảnh, video và các tài sản phương tiện khác. Dự phòng về proxy chính khi để trống."
+        },
+        "proxyPool": {
+          "label": "Nhóm proxy chính",
+          "desc": "Nhóm proxy đầu ra cho traffic API, một URL proxy mỗi dòng."
+        },
+        "resourceProxyPool": {
+          "label": "Nhóm proxy tài nguyên",
+          "desc": "Nhóm proxy chuyên dụng cho tải xuống phương tiện, một URL proxy mỗi dòng. Dự phòng về nhóm chính khi để trống."
+        },
+        "skipSslVerify": {
+          "label": "Bỏ qua xác minh SSL",
+          "desc": "Bỏ qua xác thực chứng chỉ TLS cho máy chủ proxy. Chỉ bật khi dùng chứng chỉ tự ký."
+        },
+        "clearanceMode": {
+          "label": "Chế độ xóa",
+          "desc": "Điều khiển cách lấy và làm mới Xóa Cloudflare."
+        },
+        "browserFingerprint": {
+          "label": "Dấu vân tay trình duyệt",
+          "desc": "Định danh dấu vân tay trình duyệt curl_cffi. Phải phù hợp với hồ sơ JA3 mà Cloudflare mong đợi, ví dụ chrome136."
+        },
+        "userAgent": {
+          "label": "User-Agent",
+          "desc": "Header yêu cầu User-Agent. Phải khớp với trình duyệt được dùng khi cookie Cloudflare được xác thực."
+        },
+        "cfCookies": {
+          "label": "Cookie Cloudflare",
+          "desc": "Chuỗi cookie đầy đủ do Cloudflare cấp, bao gồm các trường như cf_clearance."
+        },
+        "flaresolverrUrl": {
+          "label": "URL FlareSolverr",
+          "desc": "Điểm cuối HTTP cho phiên bản FlareSolverr."
+        },
+        "challengeTimeout": {
+          "label": "Thời gian chờ thách thức (s)",
+          "desc": "Thời gian tối đa cho phép FlareSolverr hoàn tất thách thức Cloudflare."
+        },
+        "refreshInterval": {
+          "label": "Khoảng thời gian làm mới (s)",
+          "desc": "Khoảng thời gian lập lịch cho tác vụ prewarm làm mới cookie xóa."
+        },
+        "maxRetries": {
+          "label": "Giới hạn thử lại ứng dụng",
+          "desc": "Số lần thử lại lớp ứng dụng tối đa sau khi yêu cầu thất bại. Giá trị 0 vô hiệu hóa thử lại. Áp dụng cho chat.completions và responses."
+        },
+        "retryCodes": {
+          "label": "Mã trạng thái thử lại ứng dụng",
+          "desc": "Mã trạng thái HTTP kích hoạt thử lại lớp ứng dụng. Phân tách nhiều giá trị bằng dấu phẩy, ví dụ 429,503."
+        },
+        "resetSessionCodes": {
+          "label": "Mã trạng thái xây dựng lại phiên transport",
+          "desc": "Mã trạng thái HTTP kích hoạt xây dựng lại phiên transport cho lớp proxy. Phân tách nhiều giá trị bằng dấu phẩy."
+        },
+        "chatTimeout": {
+          "label": "Thời gian chờ yêu cầu chat (s)",
+          "desc": "Thời gian chờ kết nối HTTP cho yêu cầu chat và chỉnh sửa hình ảnh."
+        },
+        "imageTimeout": {
+          "label": "Thời gian chờ yêu cầu hình ảnh (s)",
+          "desc": "Thời gian chờ tổng thể cho yêu cầu WebSocket tạo hình ảnh."
+        },
+        "videoTimeout": {
+          "label": "Thời gian chờ yêu cầu video (s)",
+          "desc": "Thời gian chờ thống nhất cho yêu cầu tạo video."
+        },
+        "voiceTimeout": {
+          "label": "Thời gian chờ yêu cầu giọng nói (s)",
+          "desc": "Thời gian chờ thống nhất cho yêu cầu giọng nói."
+        },
+        "nsfwTimeout": {
+          "label": "Thời gian chờ xử lý NSFW (s)",
+          "desc": "Thời gian chờ áp dụng cho yêu cầu set_birth_date và enable_nsfw."
+        },
+        "assetUploadTimeout": {
+          "label": "Thời gian chờ tải lên tài sản (s)",
+          "desc": "Thời gian chờ cho điểm cuối tải lên tài sản."
+        },
+        "assetDownloadTimeout": {
+          "label": "Thời gian chờ tải xuống tài sản (s)",
+          "desc": "Thời gian chờ cho điểm cuối tải xuống tài sản."
+        },
+        "assetListTimeout": {
+          "label": "Thời gian chờ liệt kê tài sản (s)",
+          "desc": "Thời gian chờ cho điểm cuối liệt kê tài sản."
+        },
+        "assetDeleteTimeout": {
+          "label": "Thời gian chờ xóa tài sản (s)",
+          "desc": "Thời gian chờ cho điểm cuối xóa tài sản."
+        },
+        "streamTimeout": {
+          "label": "Thời gian chờ idle truyền phát (s)",
+          "desc": "Thời gian idle tối đa được dung thứ khi nhận dữ liệu hình ảnh truyền phát."
+        },
+        "interRoundWait": {
+          "label": "Thời gian chờ giữa các vòng (s)",
+          "desc": "Thời gian chờ được dùng sau mỗi vòng hình ảnh để xác định xem máy chủ có giữ kết nối mở không. Nếu không nhận CLOSE kịp thời, kết nối hiện có được dùng lại cho vòng tiếp theo."
+        },
+        "fileLogLevel": {
+          "label": "Cấp độ nhật ký tệp",
+          "desc": "Cấp độ nhật ký tối thiểu được ghi vào tệp nhật ký. Có thể cấu hình độc lập với console. Mặc định: INFO."
+        },
+        "logMaxFiles": {
+          "label": "Lưu giữ nhật ký (ngày)",
+          "desc": "Số tệp nhật ký hàng ngày tối đa giữ lại trong quá trình xoay vòng. Mặc định: 7."
+        }
+      }
+    }
+  },
+  "cache": {
+    "pageTitle": "Grok2API - Quản lý bộ nhớ đệm",
+    "pageHeading": "Quản lý bộ nhớ đệm",
+    "pageSubtitle": "Xem và quản lý tệp bộ nhớ đệm cục bộ, giới hạn lưu trữ và tài sản tài khoản trực tuyến.",
+    "sectionOverview": "Tổng quan",
+    "statImageCount": "Tệp bộ nhớ đệm hình ảnh",
+    "statImageSize": "Kích thước bộ nhớ đệm hình ảnh",
+    "statVideoCount": "Tệp bộ nhớ đệm video",
+    "statVideoSize": "Kích thước bộ nhớ đệm video",
+    "usageSummaryUnlimited": "Đã dùng {used} · Không giới hạn",
+    "usageSummaryLimited": "Đã dùng {used} / {limit} · {percent}",
+    "sectionDetails": "Chi tiết",
+    "tabLocal": "Bộ nhớ đệm cục bộ",
+    "tabLocalImage": "Hình ảnh cục bộ",
+    "tabLocalVideo": "Video cục bộ",
+    "tabOnline": "Tài sản trực tuyến",
+    "typeImage": "Hình ảnh",
+    "typeVideo": "Video",
+    "typeImageNoun": "hình ảnh",
+    "typeVideoNoun": "video",
+    "clearCurrent": "Xóa bộ nhớ đệm hiện tại",
+    "deleteSelected": "Xóa đã chọn",
+    "clearSelected": "Xóa đã chọn",
+    "colFileName": "Tên tệp",
+    "colSize": "Kích thước",
+    "colModified": "Sửa đổi lần cuối",
+    "colActions": "Hành động",
+    "colToken": "Token",
+    "colFileCount": "Tệp",
+    "onlineAssetLead": "Tài sản trực tuyến",
+    "onlineAssetDesc": "là hình ảnh và tệp đính kèm được lưu trữ trên nền tảng Grok. Việc dọn dẹp chỉ ảnh hưởng đến tệp từ xa và không xóa dữ liệu bộ nhớ đệm cục bộ.",
+    "loadAssets": "Tải danh mục tài sản",
+    "clearAll": "Xóa tất cả",
+    "cancel": "Hủy",
+    "assetSummaryIdle": "Tải tài sản trực tuyến từ bên phải",
+    "assetSummary": "{accounts} tài khoản · {files} tệp",
+    "pageIndicator": "Trang {current} / {total}",
+    "pageSizeOption": "{n} / trang",
+    "fileCount": "{n} tệp",
+    "emptyLocal": "Không tìm thấy tệp bộ nhớ đệm nào",
+    "emptyAssetsIdle": "Nhấp nút trên cùng bên phải để tải tài sản trực tuyến",
+    "emptyAccounts": "Không có dữ liệu tài khoản khả dụng",
+    "actionView": "Xem",
+    "actionDelete": "Xóa",
+    "actionClear": "Xóa",
+    "loadFailed": "Tải thất bại: {message}",
+    "clearLocalConfirm": "Xóa tất cả tệp bộ nhớ đệm {type} cục bộ?",
+    "clearLocalDone": "Đã xóa {count} tệp {type}",
+    "clearFailed": "Xóa thất bại: {message}",
+    "deleted": "Đã xóa",
+    "deleteSelectedConfirm": "Xóa {n} tệp đã chọn?",
+    "deleteSelectedDone": "Đã xóa {count} tệp",
+    "deleteFailed": "Xóa thất bại: {message}",
+    "viewUnavailable": "Xem trước không khả dụng cho tệp này",
+    "loading": "Đang tải...",
+    "refreshList": "Làm mới danh sách",
+    "expand": "Mở rộng",
+    "collapse": "Thu gọn",
+    "clearTokenConfirm": "Xóa tất cả tài sản trực tuyến cho {token}?",
+    "clearTokenDone": "Đã xóa {count} tệp",
+    "clearSelectedConfirm": "Xóa tài sản trực tuyến cho {n} tài khoản đã chọn?",
+    "clearAllConfirm": "Xóa tài sản trực tuyến cho tất cả {n} tài khoản? Hành động này không thể hoàn tác.",
+    "clearingAssets": "Đang xóa tài sản trực tuyến...",
+    "clearAllDone": "Dọn dẹp hoàn tất: {ok} thành công, {fail} thất bại",
+    "cancelled": "Đã hủy",
+    "clearFailedPlain": "Dọn dẹp thất bại",
+    "connectionInterrupted": "Kết nối bị gián đoạn",
+    "startFailed": "Bắt đầu thất bại: {message}",
+    "cancelInProgress": "Đã yêu cầu hủy. Đợi lô hiện tại hoàn tất.",
+    "na": "—"
+  }
+}
